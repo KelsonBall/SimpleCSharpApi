@@ -1,0 +1,6 @@
+/home/kelson/SimpleHTTPServer/SimpleHTTPServer/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/kelson/SimpleHTTPServer/SimpleHTTPServer/bin/Debug/SimpleHTTPServer.exe.mdb
+/home/kelson/SimpleHTTPServer/SimpleHTTPServer/bin/Debug/SimpleHTTPServer.exe
+/home/kelson/SimpleHTTPServer/SimpleHTTPServer/obj/x86/Debug/SimpleHTTPServer.exe
+/home/kelson/SimpleHTTPServer/SimpleHTTPServer/obj/x86/Debug/SimpleHTTPServer.exe.mdb
+/home/kelson/SimpleHTTPServer/SimpleHTTPServer/bin/Debug/Socket.dll
