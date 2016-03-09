@@ -5,15 +5,15 @@ namespace SimpleHTTPServer.Controllers
 {
 	using Actions;
 
-	public class HelloController : Action
+	public class HelloController : EvaluationAction
 	{
 		public HelloController () : base("hello")
 		{
 		}
 
-		public override byte[] Evaluate (string[] input)
+		public override byte[] Get(string[] input)
 		{
-			base.Evaluate (input);
+			base.Get (input);
 			string response = "Hello, World!";
 			return Encoding.UTF8.GetBytes (response.ToCharArray());
 		}

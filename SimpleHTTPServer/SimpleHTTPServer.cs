@@ -7,13 +7,12 @@ using System.Net;
 using System.IO;
 using System.Threading;
 using System.Diagnostics;
-using SimpleHTTPServer.Server;
-using SimpleHTTPServer.Actions;
-using SimpleHTTPServer.Controllers;
+
 
 namespace SimpleHTTPServer.Server
-{
+{	
 	using Actions;
+
 	public class Server
 	{	
 			
@@ -22,9 +21,7 @@ namespace SimpleHTTPServer.Server
 		private HttpListener _listener;
 		private int _port;
 
-		private Guid _serverGuid = Guid.NewGuid();
-
-		public Action RootAction { get; set; }
+		public RestDirectory RootAction { get; set; }
 
 		public int Port
 		{
@@ -67,7 +64,7 @@ namespace SimpleHTTPServer.Server
 
 		public void Start()
 		{
-			_serverThread.Start();
+			//_serverThread.Start();
 		}
 
 		private void Listen()
@@ -94,9 +91,37 @@ namespace SimpleHTTPServer.Server
 			string urlData = context.Request.Url.AbsolutePath;
 			Console.WriteLine(urlData);
 
-			byte[] output = this.RootAction.Evaluate (urlData.Split ('/'));
+			string[] path = (urlData.Substring (1)).Split ('/');
+			byte[] inputBytes = null;
 
-			context.Response.OutputStream.Write (output, 0, output.Length);
+			if (context.Request.ContentLength64 > 0)
+			{
+				inputBytes = context.Request.InputStream.ReadToEnd ();
+				Console.WriteLine(Encoding.UTF8.GetString(inputBytes));
+			}
+
+			byte[] output = null;
+
+			if (context.Request.HttpMethod.Equals("GET"))
+			{
+				output = this.RootAction.Get (path);	
+			}
+			else if (context.Request.HttpMethod.Equals("POST")) 
+			{
+				output = this.RootAction.Post (path, inputBytes);
+			}
+
+
+			if (output == null)
+			{
+				//string response = "Null output buffer.";
+				//context.Response.OutputStream.Write (Encoding.UTF8.GetBytes (response), 0, response.Length);
+			}
+			else
+			{
+				
+				context.Response.OutputStream.Write (output, 0, output.Length);
+			}
 
 			context.Response.OutputStream.Flush ();
 
@@ -108,6 +133,7 @@ namespace SimpleHTTPServer.Server
 			this._rootDirectory = path;
 			this._port = port;
 			_serverThread = new Thread(this.Listen);
+			_serverThread.Start ();
 		}
 
 
@@ -117,12 +143,3 @@ namespace SimpleHTTPServer.Server
 
 
 
-public static class Program
-{
-	public static void Main(string[] args)
-	{
-		SimpleHTTPServer.Server.Server server = new SimpleHTTPServer.Server.Server ("localhost", 8080);
-		server.RootAction = new HelloController ();
-		server.Start ();
-	}
-}

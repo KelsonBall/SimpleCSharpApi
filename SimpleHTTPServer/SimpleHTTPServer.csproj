@@ -32,8 +32,15 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="SimpleHTTPServer.cs" />
-    <Compile Include="Action.cs" />
     <Compile Include="Controllers\HelloController.cs" />
+    <Compile Include="Controllers\ApiController.cs" />
+    <Compile Include="Controllers\TimeController.cs" />
+    <Compile Include="InputStreamExtentions.cs" />
+    <Compile Include="Controllers\NoteController.cs" />
+    <Compile Include="Models\NoteModel.cs" />
+    <Compile Include="Repository.cs" />
+    <Compile Include="RestDirectory.cs" />
+    <Compile Include="Main.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Net" />
@@ -43,11 +50,15 @@
       <HintPath>..\packages\Socket.2.0.0\lib\Socket.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 </Project>
