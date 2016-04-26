@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SimpleHTTPServer
+namespace HttpServer.Extentions
 {
 	public static class InputStreamExtentions
 	{

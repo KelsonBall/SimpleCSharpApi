@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SimpleHTTPServer.Models
+﻿namespace HttpServer.Models
 {
 	public class NoteModel
 	{

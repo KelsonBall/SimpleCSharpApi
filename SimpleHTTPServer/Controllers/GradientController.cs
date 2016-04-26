@@ -1,9 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 
 namespace HttpServer.Controllers
-{    
-    public class NoteController : IWebController
+{
+    public class GradientController : IWebController
     {
         public IWebController Next()
         {
@@ -12,7 +13,18 @@ namespace HttpServer.Controllers
 
         public void Get(ref HttpListenerContext context)
         {
-            throw new NotImplementedException();
+            FileStream index;
+            if (context.Request.Url.AbsolutePath.Equals(@"/gradient"))
+            {
+                index = new FileStream($@"..\web_source\gradient\index.html", FileMode.Open);
+            }
+            else
+            {
+                index = new FileStream($@"..\web_source\{context.Request.Url.AbsolutePath.Replace('/', '\\')}", FileMode.Open);
+            }
+            
+            index.CopyTo(context.Response.OutputStream);
+            index.Close();
         }
 
         public void Post(ref HttpListenerContext context)

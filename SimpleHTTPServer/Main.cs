@@ -1,16 +1,17 @@
-﻿using SimpleHTTPServer.Server;
-using SimpleHTTPServer.Actions;
-using SimpleHTTPServer.Controllers;
+﻿using System.Collections.Generic;
 
-public static class Program
+namespace HttpServer
 {
-	public static void Main(string[] args)
-	{
-		SimpleHTTPServer.Server.Server server = new SimpleHTTPServer.Server.Server ("localhost", 8080);
-		ApiController api = new ApiController ();
-		api.Add (new HelloController ());
-		api.Add (new TimeController ());
-		api.Add (new NoteController ());
-		server.RootAction = api;
-	}
+    using Controllers;
+
+    public static class Program
+    {
+        public static void Main(string[] args)
+        {
+            Server server = new Server(8080);
+            server.ControllersTable.Add("notes", new List<IWebController>() { new NoteController() });
+            server.ControllersTable.Add("gradient", new List<IWebController>() { new GradientController() });
+            server.Initialize();
+        }
+    }
 }
