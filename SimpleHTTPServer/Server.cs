@@ -67,8 +67,10 @@ namespace HttpServer
 			Console.WriteLine(urlData);
 
 		    Uri url = context.Request.Url;
-		    string key = url.AbsolutePath.Split('/')[1];
-
+		    string key = (context.Request.UrlReferrer == null) 
+                         ? url.AbsolutePath.Split('/')[1] 
+                         : context.Request.UrlReferrer.AbsolutePath.Split('/')[1];
+            
             if (!ControllersTable.ContainsKey(key))
 		    {
 		        Console.WriteLine($@"Attempt to find missing key: {key}");

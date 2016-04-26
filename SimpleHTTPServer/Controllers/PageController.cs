@@ -22,7 +22,7 @@ namespace HttpServer.Controllers
             }
             else
             {
-                index = new FileStream($@"..\web_source\{context.Request.Url.AbsolutePath.Replace('/', '\\')}", FileMode.Open);
+                index = new FileStream($@"..\web_source\{context.Request.UrlReferrer.AbsolutePath.Replace('/', '\\')}\{context.Request.Url.AbsolutePath.Replace('/', '\\')}", FileMode.Open);
             }
             
             index.CopyTo(context.Response.OutputStream);
