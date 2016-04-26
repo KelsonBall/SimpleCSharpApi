@@ -7,3 +7,4 @@ C:\Users\kelsba\Documents\Visual Studio 2015\WebHost\SimpleCSharpApi\SimpleHTTPS
 C:\Users\kelsba\Documents\Visual Studio 2015\WebHost\SimpleCSharpApi\SimpleHTTPServer\bin\Debug\Newtonsoft.Json.xml
 C:\Users\kelsba\Documents\Visual Studio 2015\WebHost\SimpleCSharpApi\SimpleHTTPServer\obj\x86\Debug\HttpServer.exe
 C:\Users\kelsba\Documents\Visual Studio 2015\WebHost\SimpleCSharpApi\SimpleHTTPServer\obj\x86\Debug\HttpServer.pdb
+C:\Users\kelsba\Documents\Visual Studio 2015\WebHost\SimpleCSharpApi\SimpleHTTPServer\obj\x86\Debug\HttpServer.csprojResolveAssemblyReference.cache

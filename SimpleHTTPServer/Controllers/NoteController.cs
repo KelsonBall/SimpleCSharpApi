@@ -5,10 +5,6 @@ namespace HttpServer.Controllers
 {    
     public class NoteController : IWebController
     {
-        public IWebController Next()
-        {
-            return null;
-        }
 
         public void Get(ref HttpListenerContext context)
         {

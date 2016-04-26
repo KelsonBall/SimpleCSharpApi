@@ -4,19 +4,21 @@ using System.Net;
 
 namespace HttpServer.Controllers
 {
-    public class GradientController : IWebController
+    public class PageController : IWebController
     {
-        public IWebController Next()
+        public string Page { get; set; }
+
+        public PageController(string page)
         {
-            return null;
-        }
+            this.Page = page;
+        }        
 
         public void Get(ref HttpListenerContext context)
         {
             FileStream index;
-            if (context.Request.Url.AbsolutePath.Equals(@"/gradient"))
+            if (context.Request.Url.AbsolutePath.Equals($@"/{this.Page}"))
             {
-                index = new FileStream($@"..\web_source\gradient\index.html", FileMode.Open);
+                index = new FileStream($@"..\web_source\{this.Page}\index.html", FileMode.Open);
             }
             else
             {
